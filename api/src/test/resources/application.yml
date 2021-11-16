@@ -1,0 +1,82 @@
+spring:
+  profiles:
+    # demo: 演示环境，内置数据库；pro 生产环境，mysql数据库
+    active: ${active:ci}
+  h2:
+    console:
+      enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: ${show-sql:false}
+
+# 公众号配置(必填)
+wx:
+  miniapp:
+    appid: wx3eac45438f40db1b
+    secret: b9c7fb32390b4c43ca9ba65d528319d7
+    token: yunzhi
+    aesKey:
+    msgDataFormat: json
+logging:
+  level:
+    club:
+      yunzhi:
+        switchgear: debug
+
+---
+
+app:
+  # 32 位随机字符串 ASE 密钥
+  crypto: ${crypto:gllwmmds4cv1d678azj8plk4sypv35yn}
+  # 短消息类型
+  sms-type: ${sms-type:local}
+  # 初始化管理员用户名
+  username: ${default-username:13920618851}
+  # 初始化管理员密码
+  password: ${default-password:admin}
+  # 手机号登录成功后无需再次获取验证码的时间间隔
+  timeout: ${effective-timeout:3600}
+  #  短信平台
+  sms:
+    access-key-id: 8TkA3lc5Vo8ub2Cj
+    access-secret: 3Q7OleKWhQuDlWPJ3rrXCkO3iYKAzj
+    sign-name: 签名名称
+  # token 用于超级验证码的校验
+  token: switchgear-
+---
+
+spring:
+  config:
+    activate:
+      on-profile: demo
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+  flyway:
+    enabled: false
+  # H2数据源,请在当前用户所有文件夹下建立h2-data文件夹，并保证其可写
+  # 或者自行指定其它文件位置
+  datasource:
+    url: jdbc:h2:~/h2-data/switchgear
+
+app:
+  origins:
+    - http://locahost:4201
+    - http://locahost:4400
+
+---
+spring:
+  config:
+    activate:
+      on-profile: ci
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+  flyway:
+    enabled: false
+
+app:
+  origins:
+    - http://locahost:4201
+    - http://locahost:4400

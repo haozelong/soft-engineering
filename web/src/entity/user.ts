@@ -22,7 +22,7 @@ export class User {
   /**
    * 角色
    */
-  roles: Array<Role>;
+  role: Role;
   /**
    * 状态
    */
@@ -37,23 +37,14 @@ export class User {
     password?: string,
     name?: string,
     num?: string,
-    roles?: Role[],
+    role?: Role,
     status?: UserStatus,
     username?: string,
   }) {
     this.id = data.id;
     this.password = data.password;
     this.username = data.username;
-    if (Array.isArray(data.roles)) {
-      this.roles = [];
-      data.roles.forEach(role => {
-        if (role instanceof Role) {
-          this.roles.push(role);
-        } else {
-          this.roles.push(new Role(role));
-        }
-      });
-    }
+    this.role = data.role;
     this.status = data.status;
     this.name = data.name;
   }

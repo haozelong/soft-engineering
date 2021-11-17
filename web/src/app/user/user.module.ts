@@ -8,9 +8,7 @@ import { EditComponent } from './edit/edit.component';
 
 @NgModule({
   declarations: [
-    IndexComponent,
-    AddComponent,
-    EditComponent
+
   ],
   imports: [
     CommonModule

@@ -1,22 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {EditComponent} from './edit.component';
+import { RoleSelectComponent } from './role-select.component';
 import {NgSelectModule} from '@ng-select/ng-select';
 import {ReactiveFormsModule} from '@angular/forms';
-import {RoleSelectModule} from '../role-select/role-select.module';
 
 
 
 @NgModule({
-  declarations: [EditComponent],
+  declarations: [
+    RoleSelectComponent
+  ],
+  exports: [
+    RoleSelectComponent
+  ],
   imports: [
     CommonModule,
     NgSelectModule,
-    ReactiveFormsModule,
-    RoleSelectModule
-  ],
-  exports: [
-    EditComponent
+    ReactiveFormsModule
   ]
 })
-export class EditModule { }
+export class RoleSelectModule { }

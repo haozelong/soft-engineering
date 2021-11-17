@@ -32,7 +32,7 @@ describe('IndexComponent', () => {
     route = TestBed.inject(ActivatedRoute) as unknown as ActivatedRouteStub;
   });
 
-  fit('should create', () => {
+  it('should create', () => {
     // 发送数据，触发 C 层的订阅方法
     route.queryParamsSubject.next({});
     expect(component).toBeTruthy();

@@ -61,7 +61,6 @@ export class IndexComponent implements OnInit {
       ).subscribe(page => {
         this.validateData(page);
         this.pageData = page;
-        console.log(this.pageData.content);
       })
     });
   }
